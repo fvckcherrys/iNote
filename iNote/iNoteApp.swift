@@ -25,6 +25,6 @@ struct iNoteApp: App {
             WindowGroup {
                 MainView()
             }
-            .modelContainer(container) // Inietta il contenitore nell'ambiente
+            .modelContainer(container)
         }
 }
