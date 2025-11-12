@@ -31,18 +31,18 @@ struct FolderListView: View {
                                folderToDelete = folder
                                isShowingDeleteAlert = true
                            } label: {
-                               Label("Elimina", systemImage: "trash")
+                               Label("Delete", systemImage: "trash")
                            }
                            Button {
                                showRenameAlert(for: folder)
                            } label: {
-                               Label("Rinomina", systemImage: "pencil")
+                               Label("Rename", systemImage: "pencil")
                            }
                            .tint(.blue)
                        }
                    }
                } header: {
-                   Text("Le mie Cartelle")
+                   Text("My Folders")
                        .font(.headline)
                        .foregroundColor(.secondary)
                        .textCase(nil)
@@ -53,44 +53,44 @@ struct FolderListView: View {
                    Button(action: {
                        isShowingAddFolderAlert = true
                    }) {
-                       Label("Nuova Cartella", systemImage: "folder.badge.plus")
+                       Label("New Folder", systemImage: "folder.badge.plus")
                    }
                }
            }
            .onAppear {
                if folders.isEmpty {
-                   let defaultFolder = Folder(name: "Note")
+                   let defaultFolder = Folder(name: "Notes")
                    modelContext.insert(defaultFolder)
                    selectedFolder = defaultFolder
                } else if selectedFolder == nil {
                    selectedFolder = folders.first
                }
            }
-           .alert("Nuova Cartella", isPresented: $isShowingAddFolderAlert) {
-               TextField("Nome", text: $newFolderName)
-               Button("Annulla", role: .cancel) { newFolderName = "" }
-               Button("Salva") {
+           .alert("New Folder", isPresented: $isShowingAddFolderAlert) {
+               TextField("Name", text: $newFolderName)
+               Button("Cancel", role: .cancel) { newFolderName = "" }
+               Button("Save") {
                    commitAddFolder()
                }
            } message: {
-               Text("Inserisci un nome per la nuova cartella.")
+               Text("Insert a name for the new folder.")
            }
-           .alert("Rinomina Cartella", isPresented: $isShowingRenameAlert) {
-               TextField("Nuovo nome", text: $renamedFolderName)
-               Button("Annulla", role: .cancel) { resetRenameState() }
-               Button("Salva") {
+           .alert("Rename Folder", isPresented: $isShowingRenameAlert) {
+               TextField("New name", text: $renamedFolderName)
+               Button("Cancel", role: .cancel) { resetRenameState() }
+               Button("Save") {
                    commitRename()
                }
            } message: {
-               Text("Inserisci un nuovo nome per la cartella '\(folderToRename?.name ?? "")'.")
+               Text("Insert a new name for the folder '\(folderToRename?.name ?? "")'.")
            }
-           .alert("Sei sicuro?", isPresented: $isShowingDeleteAlert) {
-                       Button("Annulla", role: .cancel) { folderToDelete = nil }
-                       Button("Elimina", role: .destructive) {
+           .alert("Are you sure?", isPresented: $isShowingDeleteAlert) {
+                       Button("Cancel", role: .cancel) { folderToDelete = nil }
+                       Button("Delete", role: .destructive) {
                            commitDelete()
                        }
                    } message: {
-                       Text("Eliminando la cartella \"\(folderToDelete?.name ?? "")\" verranno eliminate anche tutte le note al suo interno.")
+                       Text("Deleting the folder \"\(folderToDelete?.name ?? "")\" all the notes inside will be deleted.")
                    }
        }
     

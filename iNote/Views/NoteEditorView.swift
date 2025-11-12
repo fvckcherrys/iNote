@@ -25,7 +25,7 @@ struct NoteEditorView: View {
                 .allowsHitTesting(isDrawing)
                 .ignoresSafeArea(.container)
             
-            TextField("Titolo", text: $note.title, axis: .vertical)
+            TextField("Title", text: $note.title, axis: .vertical)
                 .font(.largeTitle.weight(.bold))
                 .padding(.horizontal)
                 .padding(.top, 8)

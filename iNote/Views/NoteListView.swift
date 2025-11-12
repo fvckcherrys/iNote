@@ -32,7 +32,7 @@ struct NoteListView: View {
                         noteToDelete = note
                         isShowingDeleteAlert = true
                     } label: {
-                        Label("Elimina", systemImage: "trash")
+                        Label("Delete", systemImage: "trash")
                     }
                 }
             }
@@ -41,17 +41,17 @@ struct NoteListView: View {
         .toolbar {
             ToolbarItem {
                 Button(action: addNote) {
-                    Label("Nuova Nota", systemImage: "square.and.pencil")
+                    Label("New Note", systemImage: "square.and.pencil")
                 }
             }
         }
-        .alert("Sei sicuro?", isPresented: $isShowingDeleteAlert) {
-                    Button("Annulla", role: .cancel) { noteToDelete = nil }
-                    Button("Elimina", role: .destructive) {
+        .alert("Are you sure?", isPresented: $isShowingDeleteAlert) {
+                    Button("Cancel", role: .cancel) { noteToDelete = nil }
+                    Button("Delete", role: .destructive) {
                         commitDeleteNote()
                     }
                 } message: {
-                    Text("La nota \"\(noteToDelete?.previewText ?? "")\" verrà eliminata definitivamente.")
+                    Text("The note \"\(noteToDelete?.previewText ?? "")\" will be deleted.")
                 }
     }
     

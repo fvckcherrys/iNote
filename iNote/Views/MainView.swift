@@ -12,14 +12,14 @@ struct MainView: View {
                 if let folder = selectedFolder {
                     NoteListView(folder: folder, selectedNote: $selectedNote)
                 } else {
-                    Text("Seleziona una cartella")
+                    Text("Select a folder")
                         .foregroundColor(.secondary)
                 }
             } detail: {
                 if let note = selectedNote {
                     NoteEditorView(note: note)
                 } else {
-                    Text("Seleziona una nota o creane una nuova")
+                    Text("Select a note or create a new one")
                         .foregroundColor(.secondary)
                 }
             }
