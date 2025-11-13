@@ -47,8 +47,8 @@ class Note {
                     stop.pointee = true
                 }
             }
-            if hasAttachment { return "Nota con disegno" }
+            if hasAttachment { return "Drawed note" }
         }
-        return "Nuova nota"
+        return "New Note"
     }
 }
